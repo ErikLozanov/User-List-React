@@ -18,6 +18,31 @@ function App() {
       .catch(err => console.log(err.message));
   },[]);
 
+  const  onSubmitForm = async (e, userInfo) => {
+    e.preventDefault();
+
+    const body = {
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      email: userInfo.email,
+      phoneNumber: userInfo.phoneNumber,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      imageUrl: userInfo.imageUrl,
+      address: {
+          country: userInfo.country,
+          city: userInfo.city,
+          street: userInfo.street,
+          streetNumber: userInfo.streetNumber,
+      }
+  }
+    
+  const newUser = await userService.create(body);
+  console.log(newUser);
+  setUsers(state => ([...state, newUser]));
+    onAddUserHandlerHide();
+}
+
   const onAddUserHandlerShow = () => {
     setShowAddUser(true);
   }
@@ -32,7 +57,7 @@ function App() {
       <section className="card users-container">
         {/* <Search /> */}
         <Table users={users} />
-        {showAddUser && <CreateEdit hideAddUser={onAddUserHandlerHide}/>}
+        {showAddUser && <CreateEdit onSubmitForm={onSubmitForm} hideAddUser={onAddUserHandlerHide}/>}
     <button onClick={onAddUserHandlerShow} className="btn-add btn">Add new user</button>
         </section>
       </main>

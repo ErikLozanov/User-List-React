@@ -1,23 +1,23 @@
 import { useState } from "react";
-
-export default function CreateEdit({ hideAddUser }) {
+import * as userService from '../services/userService';
+export default function CreateEdit({ hideAddUser, onSubmitForm }) {
     const [userInfo, setUserInfo] = useState({
         firstName: "",
         lastName: "",
         email: "",
         phoneNumber: "",
         imageUrl: "",
-        address: {
-            country: "",
-            city: "",
-            street: "",
-            streetNumber: "",
-        },
+        country: "",
+        city: "",
+        street: "",
+        streetNumber: "",
     });
 
     const onChangeHandler = (e) => {
         setUserInfo((state) => ({ ...state, [e.target.name]: e.target.value }));
     };
+
+
 
     return (
         <div className="overlay">
@@ -44,7 +44,7 @@ export default function CreateEdit({ hideAddUser }) {
                             </svg>
                         </button>
                     </header>
-                    <form>
+                    <form onSubmit={(e) => onSubmitForm(e,userInfo)}>
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="firstName">First name</label>
@@ -102,7 +102,9 @@ export default function CreateEdit({ hideAddUser }) {
                                 {/* <p className="form-error">Email is not valid!</p> */}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="phoneNumber">Phone number</label>
+                                <label htmlFor="phoneNumber">
+                                    Phone number
+                                </label>
                                 <div className="input-wrapper">
                                     <span>
                                         <i className="fa-solid fa-phone"></i>
@@ -147,6 +149,8 @@ export default function CreateEdit({ hideAddUser }) {
                                         id="country"
                                         name="country"
                                         type="text"
+                                        value={userInfo.country}
+                                        onChange={onChangeHandler}
                                     />
                                 </div>
                                 {/* <p className="form-error">
@@ -159,7 +163,7 @@ export default function CreateEdit({ hideAddUser }) {
                                     <span>
                                         <i className="fa-solid fa-city"></i>
                                     </span>
-                                    <input id="city" name="city" type="text" />
+                                    <input id="city" name="city" type="text" value={userInfo.city} onChange={onChangeHandler}/>
                                 </div>
                                 {/* <p className="form-error">
                     City should be at least 3 characters long!
@@ -178,6 +182,8 @@ export default function CreateEdit({ hideAddUser }) {
                                         id="street"
                                         name="street"
                                         type="text"
+                                        value={userInfo.street}
+                                        onChange={onChangeHandler}
                                     />
                                 </div>
                                 {/* <p className="form-error">
@@ -185,7 +191,9 @@ export default function CreateEdit({ hideAddUser }) {
                   </p> */}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="streetNumber">Street number</label>
+                                <label htmlFor="streetNumber">
+                                    Street number
+                                </label>
                                 <div className="input-wrapper">
                                     <span>
                                         <i className="fa-solid fa-house-chimney"></i>
@@ -194,6 +202,8 @@ export default function CreateEdit({ hideAddUser }) {
                                         id="streetNumber"
                                         name="streetNumber"
                                         type="text"
+                                        value={userInfo.streetNumber}
+                                        onChange={onChangeHandler}
                                     />
                                 </div>
                                 {/* <p className="form-error">
@@ -202,7 +212,11 @@ export default function CreateEdit({ hideAddUser }) {
                             </div>
                         </div>
                         <div id="form-actions">
-                            <button id="action-save" className="btn" type="submit">
+                            <button
+                                id="action-save"
+                                className="btn"
+                                type="submit"
+                            >
                                 Save
                             </button>
                             <button
