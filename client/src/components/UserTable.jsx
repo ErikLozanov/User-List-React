@@ -1,6 +1,6 @@
 import {formatDate} from '../utils/formatDate';
 
-export default function UserTable ({user}) {
+export default function UserTable ({user,showDetails, hideDetails}) {
 
     return (
         <tr>
@@ -51,7 +51,7 @@ export default function UserTable ({user}) {
               ></path>
             </svg>
           </button>
-          <button className="btn info-btn" title="Info">
+          <button onClick={showDetails} className="btn info-btn" title="Info">
             <svg
               aria-hidden="true"
               focusable="false"

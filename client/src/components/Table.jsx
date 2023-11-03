@@ -1,7 +1,7 @@
 import UserTable from "./UserTable";
 
-export default function Table({users}) {
-
+export default function Table({users,showDetails}) {
+    
 
 
     return (
@@ -167,7 +167,7 @@ export default function Table({users}) {
                     </tr>
                 </thead>
                 <tbody>{/* Table row component */}
-                {users.map(user => <UserTable key={user._id} user={user}/>)}
+                {users.map(user => <UserTable key={user._id} user={user} showDetails={showDetails} />)}
                 </tbody>
             </table>
         </div>

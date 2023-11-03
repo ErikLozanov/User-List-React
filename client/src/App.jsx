@@ -6,11 +6,14 @@ import Table from "./components/Table"
 import { useEffect, useState } from "react";
 import * as userService from "./services/userService";
 import CreateEdit from "./components/CreateEdit";
+import UserDetails from "./components/UserDetails";
 
 function App() {
 
   const [users,setUsers] = useState([]);
   const [showAddUser, setShowAddUser] = useState(false);
+  const [showUserDetails, setshowUserDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
       userService.getAll()
@@ -45,9 +48,16 @@ function App() {
 
   const onAddUserHandlerShow = () => {
     setShowAddUser(true);
-  }
+  };
   const onAddUserHandlerHide = () => {
     setShowAddUser(false);
+    setShowDetails(false);
+  };
+  const onShowDetails = () => {
+    setShowDetails(true);
+  }
+  const onHideDetails = () => {
+    setShowDetails(false);
   }
 
   return (
@@ -56,8 +66,9 @@ function App() {
       <main className="main">
       <section className="card users-container">
         {/* <Search /> */}
-        <Table users={users} />
+        <Table showDetails={onShowDetails} users={users} />
         {showAddUser && <CreateEdit onSubmitForm={onSubmitForm} hideAddUser={onAddUserHandlerHide}/>}
+        {showDetails && <UserDetails hideDetails={onHideDetails} />}
     <button onClick={onAddUserHandlerShow} className="btn-add btn">Add new user</button>
         </section>
       </main>
