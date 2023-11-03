@@ -14,6 +14,7 @@ function App() {
   const [showAddUser, setShowAddUser] = useState(false);
   const [showUserDetails, setshowUserDetails] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
       userService.getAll()
@@ -53,8 +54,11 @@ function App() {
     setShowAddUser(false);
     setShowDetails(false);
   };
-  const onShowDetails = () => {
+  const onShowDetails = async (userId) => {
     setShowDetails(true);
+    const result = await userService.getOne(userId);
+    console.log(result);
+    setUser(result);
   }
   const onHideDetails = () => {
     setShowDetails(false);
@@ -68,7 +72,7 @@ function App() {
         {/* <Search /> */}
         <Table showDetails={onShowDetails} users={users} />
         {showAddUser && <CreateEdit onSubmitForm={onSubmitForm} hideAddUser={onAddUserHandlerHide}/>}
-        {showDetails && <UserDetails hideDetails={onHideDetails} />}
+        {showDetails && <UserDetails user={user} hideDetails={onHideDetails} />}
     <button onClick={onAddUserHandlerShow} className="btn-add btn">Add new user</button>
         </section>
       </main>

@@ -51,7 +51,7 @@ export default function UserTable ({user,showDetails, hideDetails}) {
               ></path>
             </svg>
           </button>
-          <button onClick={showDetails} className="btn info-btn" title="Info">
+          <button onClick={() => showDetails(user._id)} className="btn info-btn" title="Info">
             <svg
               aria-hidden="true"
               focusable="false"

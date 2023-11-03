@@ -19,3 +19,9 @@ export async function create (userInfo) {
 
     return request.json();
 }
+
+export async function getOne (userId) {
+    const request = await fetch(`${baseUrl}/${userId}`);
+    const response = await request.json();
+    return response;
+}
