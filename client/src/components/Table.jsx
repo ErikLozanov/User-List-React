@@ -1,16 +1,8 @@
-import { useEffect, useState } from "react";
-import * as userService from "../services/userService";
 import UserTable from "./UserTable";
 
-export default function Table() {
+export default function Table({users}) {
 
-    const [users,setUsers] = useState([]);
 
-    useEffect(() => {
-        userService.getAll()
-        .then(res => setUsers(Object.values(res)))
-        .catch(err => console.log(err.message));
-    },[]);
 
     return (
         <div className="table-wrapper">

@@ -1,4 +1,4 @@
-export default function CreateEdit() {
+export default function CreateEdit({hideAddUser}) {
 
 
     return (
@@ -8,7 +8,7 @@ export default function CreateEdit() {
           <div class="user-container">
             <header class="headers">
               <h2>Edit User/Add User</h2>
-              <button class="btn close">
+              <button onClick={hideAddUser} class="btn close">
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
                   class="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                   <path fill="currentColor"
@@ -25,9 +25,9 @@ export default function CreateEdit() {
                     <span><i class="fa-solid fa-user"></i></span>
                     <input id="firstName" name="firstName" type="text" />
                   </div>
-                  <p class="form-error">
+                  {/* <p class="form-error">
                     First name should be at least 3 characters long!
-                  </p>
+                  </p> */}
                 </div>
                 <div class="form-group">
                   <label for="lastName">Last name</label>
@@ -35,9 +35,9 @@ export default function CreateEdit() {
                     <span><i class="fa-solid fa-user"></i></span>
                     <input id="lastName" name="lastName" type="text" />
                   </div>
-                  <p class="form-error">
+                  {/* <p class="form-error">
                     Last name should be at least 3 characters long!
-                  </p>
+                  </p> */}
                 </div>
               </div>
         
@@ -48,37 +48,37 @@ export default function CreateEdit() {
                     <span><i class="fa-solid fa-envelope"></i></span>
                     <input id="email" name="email" type="text" />
                   </div>
-                  <p class="form-error">Email is not valid!</p>
+                  {/* <p class="form-error">Email is not valid!</p> */}
                 </div>
-                <div class="form-group">
+                <div class="form-group"> 
                   <label for="phoneNumber">Phone number</label>
                   <div class="input-wrapper">
                     <span><i class="fa-solid fa-phone"></i></span>
                     <input id="phoneNumber" name="phoneNumber" type="text" />
                   </div>
-                  <p class="form-error">Phone number is not valid!</p>
+                  {/* <p class="form-error">Phone number is not valid!</p> */}
                 </div>
               </div>
-        
+         
               <div class="form-group long-line">
                 <label for="imageUrl">Image Url</label>
                 <div class="input-wrapper">
                   <span><i class="fa-solid fa-image"></i></span>
                   <input id="imageUrl" name="imageUrl" type="text" />
                 </div>
-                <p class="form-error">ImageUrl is not valid!</p>
+                {/* <p class="form-error">ImageUrl is not valid!</p> */}
               </div>
         
-              <div class="form-row">
+              <div class="form-row"> 
                 <div class="form-group">
                   <label for="country">Country</label>
                   <div class="input-wrapper">
                     <span><i class="fa-solid fa-map"></i></span>
                     <input id="country" name="country" type="text" />
                   </div>
-                  <p class="form-error">
+                  {/* <p class="form-error">
                     Country should be at least 2 characters long!
-                  </p>
+                  </p> */}
                 </div>
                 <div class="form-group">
                   <label for="city">City</label>
@@ -86,9 +86,9 @@ export default function CreateEdit() {
                     <span><i class="fa-solid fa-city"></i></span>
                     <input id="city" name="city" type="text" />
                   </div>
-                  <p class="form-error">
+                  {/* <p class="form-error">
                     City should be at least 3 characters long!
-                  </p>
+                  </p> */}
                 </div>
               </div>
         
@@ -99,9 +99,9 @@ export default function CreateEdit() {
                     <span><i class="fa-solid fa-map"></i></span>
                     <input id="street" name="street" type="text" />
                   </div>
-                  <p class="form-error">
+                  {/* <p class="form-error">
                     Street should be at least 3 characters long!
-                  </p>
+                  </p> */}
                 </div>
                 <div class="form-group">
                   <label for="streetNumber">Street number</label>
@@ -109,14 +109,14 @@ export default function CreateEdit() {
                     <span><i class="fa-solid fa-house-chimney"></i></span>
                     <input id="streetNumber" name="streetNumber" type="text" />
                   </div>
-                  <p class="form-error">
+                  {/* <p class="form-error">
                     Street number should be a positive number!
-                  </p>
+                  </p> */}
                 </div>
               </div>
               <div id="form-actions">
                 <button id="action-save" class="btn" type="submit">Save</button>
-                <button id="action-cancel" class="btn" type="button">
+                <button id="action-cancel" onClick={hideAddUser} class="btn" type="button">
                   Cancel
                 </button>
               </div>
