@@ -1,6 +1,6 @@
 import {formatDate} from '../utils/formatDate';
 
-export default function UserTable ({user,showDetails, hideDetails}) {
+export default function UserTable ({user,showDetails, showEdit}) {
 
     return (
         <tr>
@@ -17,7 +17,7 @@ export default function UserTable ({user,showDetails, hideDetails}) {
         <td>{user.phoneNumber}</td>
         <td>{formatDate(user.createdAt)}</td>
         <td className="actions">
-          <button className="btn edit-btn" title="Edit">
+          <button onClick={() => showEdit(user._id)} className="btn edit-btn" title="Edit">
             <svg
               aria-hidden="true"
               focusable="false"

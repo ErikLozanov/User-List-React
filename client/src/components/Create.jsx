@@ -25,7 +25,7 @@ export default function CreateEdit({ hideAddUser, onSubmitForm }) {
             <div className="modal">
                 <div className="user-container">
                     <header className="headers">
-                        <h2>Edit User/Add User</h2>
+                        <h2>Add User</h2>
                         <button onClick={hideAddUser} className="btn close">
                             <svg
                                 aria-hidden="true"
