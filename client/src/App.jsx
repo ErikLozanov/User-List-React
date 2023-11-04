@@ -1,3 +1,5 @@
+import {v4} from 'uuid';
+
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 import Search from "./components/SearchComponent"
@@ -46,7 +48,32 @@ function App() {
   console.log(newUser);
   setUsers(state => ([...state, newUser]));
     onAddUserHandlerHide();
-}
+};
+  const onEditSubmitForm = async (e,userInfo) => {
+    e.preventDefault();
+    console.log(userInfo._id);
+    const body = {
+      _id: v4(),
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      email: userInfo.email,
+      phoneNumber: userInfo.phoneNumber,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      imageUrl: userInfo.imageUrl,
+      address: {
+          country: userInfo.country,
+          city: userInfo.city,
+          street: userInfo.street,
+          streetNumber: userInfo.streetNumber,
+      }
+  }
+    
+  const editedUser = await userService.editUser(userInfo._id, body);
+  console.log(editedUser);
+  setUsers(state => ([...state, editedUser]));
+    hideEditModal();
+  }
 
   const onAddUserHandlerShow = () => {
     setShowAddUser(true);
@@ -83,7 +110,7 @@ function App() {
         <Table showEdit={showEditModal} showDetails={onShowDetails} users={users} />
         {showAddUser && <Create onSubmitForm={onSubmitForm} hideAddUser={onAddUserHandlerHide}/>}
         {showDetails && <UserDetails user={user} hideDetails={onHideDetails} />}
-        {showEdit && <Edit userId={userId} hideAddUser={hideEditModal} onSubmitForm={onSubmitForm}/>}
+        {showEdit && <Edit userId={userId} hideAddUser={hideEditModal} onSubmitForm={onEditSubmitForm}/>}
     <button onClick={onAddUserHandlerShow} className="btn-add btn">Add new user</button>
         </section>
       </main>
