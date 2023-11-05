@@ -23,7 +23,7 @@ export async function create (userInfo) {
 export async function getOne (userId) {
     const request = await fetch(`${baseUrl}/${userId}`);
     const response = await request.json();
-
+    console.log(response);
     const user = {
         _id: response._id,
         firstName: response.firstName,

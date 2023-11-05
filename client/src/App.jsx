@@ -71,7 +71,7 @@ function App() {
     
   const editedUser = await userService.editUser(userInfo._id, body);
   console.log(editedUser);
-  setUsers(state => ([...state, editedUser]));
+  setUsers(state => state.map(user => user._id === editedUser._id ? editedUser : user));
     hideEditModal();
   }
 
